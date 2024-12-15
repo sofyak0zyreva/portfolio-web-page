@@ -68,20 +68,48 @@ def authorize(provider):
 def telegram_auth():
     return handle_telegram_auth()
 
+# Function to verify the Telegram auth data
+
+
+def check_response(data):
+    d = data.copy()
+    del d['hash']
+    d_list = []
+    for key in sorted(d.keys()):
+        if d[key] is not None:
+            d_list.append(f"{key}={d[key]}")
+    data_string = '\n'.join(d_list).encode('utf-8')
+
+    secret_key = hashlib.sha256(TELEGRAM_BOT_TOKEN.encode('utf-8')).digest()
+    hmac_string = hmac.new(secret_key, data_string, hashlib.sha256).hexdigest()
+
+    return hmac_string == data['hash']
 
 def handle_telegram_auth():
-    data = request.form.to_dict()
-    auth_data = data.get('auth_data')
-    received_hash = data.get('hash')
+    data = {
+        'id': request.args.get('id'),
+        'first_name': request.args.get('first_name'),
+        'last_name': request.args.get('last_name'),
+        'username': request.args.get('username'),
+        'photo_url': request.args.get('photo_url'),
+        'auth_date': request.args.get('auth_date'),
+        'hash': request.args.get('hash')
+    }
 
-    secret_key = TELEGRAM_BOT_TOKEN.encode('utf-8')
-    calculated_hash = hmac.new(secret_key, auth_data.encode(
-        'utf-8'), hashlib.sha256).hexdigest()
-
-    if calculated_hash != received_hash:
+    # Check if the response is valid
+    if not check_response(data):
         return "Invalid authentication", 403
 
-    user_info = json.loads(auth_data)
+    # If the response is valid, save the user info
+    user_info = {
+        'provider': 'telegram',
+        'provider_id': data['id'],
+        'username': data['username'],
+        'first_name': data['first_name'],
+        'last_name': data['last_name']
+    }
+
+    # Save user info
     return save_user_info('telegram', user_info)
 
 
