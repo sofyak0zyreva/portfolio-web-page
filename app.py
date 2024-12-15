@@ -64,7 +64,7 @@ def authorize(provider):
     return save_user_info(provider, user_info)
 
 
-@app.route('/telegram_auth', methods=['POST'])
+@app.route('/telegram_auth', methods=['GET', 'POST'])
 def telegram_auth():
     return handle_telegram_auth()
 
