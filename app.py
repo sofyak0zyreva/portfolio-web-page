@@ -103,7 +103,7 @@ def handle_telegram_auth():
     # If the response is valid, save the user info
     user_info = {
         'provider': 'telegram',
-        'provider_id': data['id'],
+        'id': data['id'],
         'username': data['username'],
         'first_name': data['first_name'],
         'last_name': data['last_name']
@@ -119,7 +119,7 @@ def save_user_info(provider, user_info):
     username = user_info.get(
         'username') if provider == 'telegram' else user_info.get('login')
     name = user_info.get('name') or user_info.get(
-        'login')  # Fallback to GitHub login if no name
+        'login')  
 
     # Check if user exists in the database
     user = User.query.filter_by(
