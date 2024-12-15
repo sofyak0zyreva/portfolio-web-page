@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+	<!-- Header Section -->
+	<div class="row text-center">
+		<div class="col-12">
+			{% if user %}
+			<h1>Козырева Софья Александровна</h1> <!-- 1 ФИО -->
+			<img src="{{ url_for('static', filename='images/profile.jpg') }}" class="img-fluid rounded-circle w-25"
+				alt="Your Photo">
+			<!-- 2 Фото -->
+			{% else %}
+			<p>Пожалуйста, войдите, чтобы просмотреть страницу</p>
+			{% endif %}
+		</div>
+	</div>
+
+	{% if user %}
+	<!-- 3 Информация о себе -->
+	<div class="row mt-4">
+		<div class="col-md-6">
+			<h3>Обо мне</h3>
+			<p>Всем привет! Мне 19 лет, я учусь в СПБГУ на направлении "Программная инженерия". В свободное время люблю
+				заниматься фотографией. Хорошо знаю английский, в качестве второго иностранного изучаю немецкий.</p>
+			<p>
+				До поступления в университет я активно изучала физику в СУНЦ НГУ и поняла, что так много физики мне
+				знать не хочется. Но я благодарна, что прошла этот путь, ведь на нем мне встретились прекрасные люди.
+			</p>
+		</div>
+		<div class="col-md-6">
+			<!-- 4 навыки и умения -->
+			<h3>Навыки и умения</h3>
+			<ul>
+				<li>Разработка фронтенда: HTML, JavaScript</li>
+				<li>Разработка бэкенда: Python, Flask</li>
+				<li>Основы работы с Git и GitHub</li>
+				<li>Разработка приложений с использованием ООП: Kotlin, Gradle</li>
+				<li>Программирование в рамках императивной парадигмы: C</li>
+				<li>Программирование в рамках функциональной парадигмы: OCaml</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- 5 проекты и ссылка на GitHub -->
+	<div class="row mt-5">
+		<div class="col-12">
+			<h3>Мои проекты</h3>
+			<p>Доступны на GitHub:</p>
+			<a href="https://github.com/sofyak0zyreva" class="btn btn-dark" target="_blank">GitHub Profile</a>
+		</div>
+	</div>
+
+	<!-- 6 контакты -->
+	<div class="row mt-5">
+		<div class="col-md-6">
+			<h3>Контактная информация</h3>
+			<ul>
+				<li><strong>Телефон:</strong> +79618883755</li>
+				<li><strong>Telegram:</strong> @soffque</li>
+				<li><strong>Email:</strong> k81sofia@gmail.com</li>
+			</ul>
+		</div>
+		<div class="col-md-6">
+			<!-- 11 как связаться -->
+			<h3>Как связаться</h3>
+			<p>Если вы хотите со мной связаться, используйте один из способов в разделе с контактной информацией!</p>
+		</div>
+	</div>
+	{% else %}
+	<!-- 12 динамика -->
+	<div class="row mt-4">
+		<div class="col-12 text-center">
+			<a href="{{ url_for('login', provider='github') }}" class="btn btn-dark">Войти с помощью GitHub</a>
+			<a href="https://t.me/auth_portfolio_bot" class="btn btn-info">Войти с помощью Telegram</a>
+
+		</div>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}
