@@ -43,18 +43,6 @@ class User(db.Model):
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        subject = request.form['subject']
-        message = request.form['message']
-
-        print(f"Name: {name}")
-        print(f"Email: {email}")
-        print(f"Subject: {subject}")
-        print(f"Message: {message}")
-
-        return redirect(url_for('home'))
     user = session.get('user')
     return render_template('home.html', user=user)
 
@@ -97,6 +85,7 @@ def check_response(data):
 
     return hmac_string == data['hash']
 
+
 def handle_telegram_auth():
     data = {
         'id': request.args.get('id'),
@@ -131,7 +120,7 @@ def save_user_info(provider, user_info):
     username = user_info.get(
         'username') if provider == 'telegram' else user_info.get('login')
     name = user_info.get('name') or user_info.get(
-        'login')  
+        'login')
 
     # Check if user exists in the database
     user = User.query.filter_by(

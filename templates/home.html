@@ -272,8 +272,7 @@
 				</div>
 
 				<div class="col-lg-8">
-					<form action="{{ url_for('home') }}" method="post" class="php-email-form" data-aos="fade-up"
-						data-aos-delay="200">
+					<form id="contact-form" action="#" method="post" class="new" data-aos="fade-up" data-aos-delay="200">
 						<div class="row gy-4">
 
 							<div class="col-md-6">
@@ -294,15 +293,29 @@
 							</div>
 
 							<div class="col-md-12 text-center">
-								<div class="loading">Loading</div>
-								<div class="error-message"></div>
-								<div class="sent-message">Ваше сообщение отправлено!</div>
+								<div class="sent-message" style="display: none;">Ваше сообщение отправлено!</div>
 
-								<button type="submit">Отправить</button>
+								<button class="new" type="submit">Отправить</button>
 							</div>
+
 
 						</div>
 					</form>
+					<script>
+						document.addEventListener('DOMContentLoaded', function () {
+							const form = document.getElementById('contact-form');
+							const sentMessage = document.querySelector('.sent-message');
+							form.addEventListener('submit', function (event) {
+								event.preventDefault();
+
+								sentMessage.style.display = 'block'; 
+
+								setTimeout(() => {
+									sentMessage.style.display = 'none'; 
+								}, 3000);
+							});
+						});
+					</script>
 				</div><!-- End Contact Form -->
 
 			</div>
@@ -310,6 +323,7 @@
 		</div>
 
 	</section><!-- /Contact Section -->
+
 
 </main>
 
@@ -351,9 +365,9 @@
 <!-- Main JS File -->
 <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
 {% else %}
-<div class="row text-center">
-	<div class="col-12">
-		<p>Пожалуйста, войдите, чтобы просмотреть страницу</p>
+<div class="row mt-4">
+	<div class="col-12 text-center d-flex justify-content-center align-items-center">
+		<p>Войдите, чтобы просмотреть страницу</p>
 	</div>
 	<div class="row mt-4">
 		<div class="col-12 text-center d-flex justify-content-center align-items-center">
