@@ -359,11 +359,13 @@
 		<div class="col-12 text-center d-flex justify-content-center align-items-center">
 			<a href="{{ url_for('login', provider='github') }}" class="btn btn-dark rounded-3 me-2">Войти через
 				GitHub</a>
+			<!-- Telegram login button -->
 			<script async src="https://telegram.org/js/telegram-widget.js?7" data-telegram-login="auth_portfolio_bot"
 				data-size="large" data-radius="10" data-lang="ru"
 				data-auth-url="https://portfolio-web-page-l4s8.onrender.com/telegram_auth">
 				</script>
 		</div>
 	</div>
+</div>
 {% endif %}
 {% endblock %}
