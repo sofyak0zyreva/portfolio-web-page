@@ -41,8 +41,20 @@ class User(db.Model):
 # Routes
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
+
+        print(f"Name: {name}")
+        print(f"Email: {email}")
+        print(f"Subject: {subject}")
+        print(f"Message: {message}")
+
+        return redirect(url_for('home'))
     user = session.get('user')
     return render_template('home.html', user=user)
 
