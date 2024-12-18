@@ -54,19 +54,17 @@
 						заниматься фотографией. Хорошо знаю английский, в качестве второго иностранного изучаю немецкий.
 					</p>
 					<div class="row">
-						<div class="col-lg-6">
-							<ul>
-								<li><i class="bi bi-chevron-right"></i> <strong>ФИО:</strong> <span>Козырева Софья
-										Александровна</span></li>
-								<li><i class="bi bi-chevron-right"></i> <strong>Возраст:</strong>
-									<span>19 лет</span>
-								</li>
-								<li><i class="bi bi-chevron-right"></i> <strong>Образование:</strong> <span>СПБГУ,
-										Программная инженерия</span></li>
-								<li><i class="bi bi-chevron-right"></i> <strong>Курс:</strong> <span>2
-									</span></li>
-							</ul>
-						</div>
+						<ul>
+							<li><i class="bi bi-chevron-right"></i> <strong>ФИО:</strong> <span>Козырева Софья
+									Александровна</span></li>
+							<li><i class="bi bi-chevron-right"></i> <strong>Возраст:</strong>
+								<span>19 лет</span>
+							</li>
+							<li><i class="bi bi-chevron-right"></i> <strong>Образование:</strong> <span>СПБГУ,
+									Программная инженерия</span></li>
+							<li><i class="bi bi-chevron-right"></i> <strong>Курс:</strong> <span>2
+								</span></li>
+						</ul>
 					</div>
 					<p class="py-3">
 						Я родилась в Томске. Последние два года школы прожила в Новосибирске, а сейчас, конечно, живу в
@@ -195,6 +193,7 @@
 						</p>
 
 						<a href="https://github.com/spbu-coding-2023/graphs-graphs-5" target="_blank">Graphs</a>
+
 					</div><!-- Edn Resume Item -->
 
 				</div>
@@ -272,7 +271,8 @@
 				</div>
 
 				<div class="col-lg-8">
-					<form id="contact-form" action="#" method="post" class="new" data-aos="fade-up" data-aos-delay="200">
+					<form id="contact-form" action="#" method="post" class="new" data-aos="fade-up"
+						data-aos-delay="200">
 						<div class="row gy-4">
 
 							<div class="col-md-6">
@@ -308,10 +308,10 @@
 							form.addEventListener('submit', function (event) {
 								event.preventDefault();
 
-								sentMessage.style.display = 'block'; 
+								sentMessage.style.display = 'block';
 
 								setTimeout(() => {
-									sentMessage.style.display = 'none'; 
+									sentMessage.style.display = 'none';
 								}, 3000);
 							});
 						});
@@ -369,10 +369,12 @@
 	<div class="col-12 text-center d-flex justify-content-center align-items-center">
 		<p>Войдите, чтобы просмотреть страницу</p>
 	</div>
-	<div class="row mt-4">
-		<div class="col-12 text-center d-flex justify-content-center align-items-center">
-			<a href="{{ url_for('login', provider='github') }}" class="btn btn-dark rounded-3 me-2">Войти через
-				GitHub</a>
+	<div class="row mt-4 justify-content-center">
+		<div class="col-12 col-md-auto d-flex flex-column flex-md-row justify-content-center align-items-center">
+			<!-- GitHub Login Button -->
+			<a href="{{ url_for('login', provider='github') }}" class="btn btn-dark rounded-3 mb-3 mb-md-0 me-md-2">Войти
+				через GitHub</a>
+	
 			<!-- Telegram login button -->
 			<script async src="https://telegram.org/js/telegram-widget.js?7" data-telegram-login="auth_portfolio_bot"
 				data-size="large" data-radius="10" data-lang="ru"
@@ -380,6 +382,8 @@
 				</script>
 		</div>
 	</div>
+</div>
+
 </div>
 {% endif %}
 {% endblock %}
