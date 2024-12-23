@@ -172,7 +172,7 @@
 						<h4> Библиотека деревьев </h4>
 						<h5>1 курс, весенний семестр</h5>
 						<p><em>Работа была в команде из 3 человек. Стояла задача разработать архитектуру библиотеки,
-								реализовать бинарное дерево поиска, АВД и красно-черное. Необходимо было провести
+								реализовать бинарное дерево поиска, АВЛ и красно-черное. Необходимо было провести
 								юнит-тестирование. Полезным опытом также оказалось проведение ревью другой команды.</em>
 						</p>
 						<a href="https://github.com/spbu-coding-2023/trees-5" target="_blank">Trees</a>
@@ -379,27 +379,25 @@
 		<p>Войдите, чтобы просмотреть раздел</p>
 	</div><!-- End Section Title -->
 	
-	<div class="container">
-		<div class="row gy-4 justify-content-center align-items-center">
-			<!-- Center content both horizontally and vertically -->
+	<div class="row mt-4 justify-content-center">
+		<div class="col-12 col-md-auto d-flex flex-column flex-md-row justify-content-center align-items-center">
+			<!-- GitHub Login Button -->
+			<a href="{{ url_for('login', provider='github') }}" class="btn btn-dark rounded-3 mb-3 mb-md-0 me-md-2">Войти
+				через GitHub</a>
 	
-			<div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center mb-3 mb-md-0">
-				<!-- GitHub Login Button -->
-				<a href="{{ url_for('login', provider='github') }}" class="btn btn-dark rounded-3 w-100 text-center">Войти
-					через GitHub</a>
-			</div><!-- End Service Item -->
-	
-			<div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center">
-				<!-- Telegram login button -->
-				<div class="telegram-button-container w-100">
-					<script async src="https://telegram.org/js/telegram-widget.js?7"
-						data-telegram-login="auth_portfolio_bot" data-size="large" data-radius="10" data-lang="ru"
-						data-auth-url="https://portfolio-web-page-l4s8.onrender.com/telegram_auth">
-						</script>
-				</div>
-			</div><!-- End Service Item -->
-	
+			<!-- Telegram login button -->
+			<script async src="https://telegram.org/js/telegram-widget.js?7" data-telegram-login="auth_portfolio_bot"
+				data-size="large" data-radius="10" data-lang="ru"
+				data-auth-url="https://portfolio-web-page-l4s8.onrender.com/telegram_auth">
+				</script>
 		</div>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+
+
+
 	</div>
 
 
