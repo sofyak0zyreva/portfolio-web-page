@@ -292,9 +292,9 @@
 							</div>
 
 							<div class="col-md-12 text-center">
-								<div class="sent-message" style="display: none;">Ваше сообщение отправлено!</div>
+								<div class="sent-message" style="display: none;"><p>Ваше сообщение отправлено!</p></div>
 
-								<button class="new" type="submit">Отправить</button>
+								<button type="submit">Отправить сообщение</button>
 							</div>
 
 
@@ -303,22 +303,34 @@
 					<script>
 						document.addEventListener('DOMContentLoaded', function () {
 							const form = document.getElementById('contact-form');
-							const sentMessage = document.querySelector('.sent-message');
 							form.addEventListener('submit', function (event) {
 								event.preventDefault();
+								const formData = new FormData(form);
+								const data = Object.fromEntries(formData.entries());
 
-								sentMessage.style.display = 'block';
-
-								setTimeout(() => {
-									sentMessage.style.display = 'none';
-								}, 3000);
+								fetch('/form', {
+									method: 'POST',
+									headers: { 'Content-Type': 'application/json' },
+									body: JSON.stringify(data),
+								})
+									.then(response => response.json())
+									.then(data => {
+										if (data.status === 'success') {
+											document.querySelector('.sent-message').style.display = 'block';
+											setTimeout(() => {
+												document.querySelector('.sent-message').style.display = 'none';
+											}, 3000);
+										}
+									})
+									.catch(error => {
+										console.error('Fetch Error:', error);
+										alert('Error sending message.');
+									});
 							});
 						});
 					</script>
 				</div><!-- End Contact Form -->
-
 			</div>
-
 		</div>
 
 	</section><!-- /Contact Section -->
@@ -376,13 +388,14 @@
 		<h2>(?)</h2>
 		<p>Войдите, чтобы просмотреть раздел</p>
 	</div><!-- End Section Title -->
-	
+
 	<div class="row mt-4 justify-content-center">
 		<div class="col-12 col-md-auto d-flex flex-column flex-md-row justify-content-center align-items-center">
 			<!-- GitHub Login Button -->
-			<a href="{{ url_for('login', provider='github') }}" class="btn btn-dark rounded-3 mb-3 mb-md-0 me-md-2">Войти
+			<a href="{{ url_for('login', provider='github') }}"
+				class="btn btn-dark rounded-3 mb-3 mb-md-0 me-md-2">Войти
 				через GitHub</a>
-	
+
 			<!-- Telegram login button -->
 			<script async src="https://telegram.org/js/telegram-widget.js?7" data-telegram-login="auth_portfolio_bot"
 				data-size="large" data-radius="10" data-lang="ru"

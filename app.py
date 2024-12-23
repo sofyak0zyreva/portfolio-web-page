@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, session, render_template, request
+from flask import Flask, redirect, url_for, session, render_template, request, jsonify
 from authlib.integrations.flask_client import OAuth
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
@@ -32,7 +32,7 @@ github = oauth.register(
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    provider = db.Column(db.String(50), nullable=False)  
+    provider = db.Column(db.String(50), nullable=False)
     provider_id = db.Column(db.String(100), unique=True,
                             nullable=False)  # OAuth unique ID
     name = db.Column(db.String(100), nullable=True)
@@ -142,6 +142,21 @@ def save_user_info(provider, user_info):
 def logout():
     session.pop('user', None)
     return redirect(url_for('home'))
+
+
+@app.route('/form', methods=['POST'])
+def handle_form():
+    file_path = os.path.join(app.instance_path, 'messages.json')
+    form_data = request.get_json()  # Get JSON data sent from the form
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as f:
+            data = json.load(f)
+    else:
+        data = []
+    data.append(form_data)
+    with open(file_path, 'w') as f:
+        json.dump(data, f, indent=4)
+    return jsonify({'status': 'success'})
 
 # Initialize the database
 
