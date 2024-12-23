@@ -32,7 +32,7 @@ github = oauth.register(
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    provider = db.Column(db.String(50), nullable=False)  # 'google' or 'github'
+    provider = db.Column(db.String(50), nullable=False)  
     provider_id = db.Column(db.String(100), unique=True,
                             nullable=False)  # OAuth unique ID
     name = db.Column(db.String(100), nullable=True)
