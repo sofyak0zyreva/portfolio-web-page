@@ -4,7 +4,6 @@
 
 {% block content %}
 
-{% if user %}
 <header id="header" class="header d-flex align-items-center sticky-top">
 	<div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
@@ -323,7 +322,86 @@
 		</div>
 
 	</section><!-- /Contact Section -->
+	{% if user %}
+	<!-- Services Section -->
+	<section id="services" class="services section">
 
+		<!-- Section Title -->
+		<div class="container section-title" data-aos="fade-up">
+			<h2>Еще один раз обо мне</h2>
+			<p>Поделюсь словами и выражениями в немецком языке, а почему бы и нет.</p>
+		</div><!-- End Section Title -->
+
+		<div class="container">
+
+			<div class="row gy-4">
+
+				<div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+					<div class="service-item position-relative">
+						<div class="icon"><i class="bi bi-activity icon"></i></div>
+						<h4><a href="" class="stretched-link">die Kirsche</a></h4>
+						<p>"Вишня". Кто вообще не любит вишню? Еще и звучит красиво.</p>
+					</div>
+				</div><!-- End Service Item -->
+
+				<div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+					<div class="service-item position-relative">
+						<div class="icon"><i class="bi bi-activity icon"></i></div>
+						<h4><a href="" class="stretched-link">Ich habe es satt</a></h4>
+						<p>"С меня хватит". Просто, четко, по существу.</p>
+					</div>
+				</div><!-- End Service Item -->
+
+				<div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+					<div class="service-item position-relative">
+						<div class="icon"><i class="bi bi-activity icon"></i></div>
+						<h4><a href="" class="stretched-link">Es bangt mir davor</a></h4>
+						<p>"Я страшусь этого". Чего не знаю, но знать полезно.</p>
+					</div>
+				</div><!-- End Service Item -->
+
+				<div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+					<div class="service-item position-relative">
+						<div class="icon"><i class="bi bi-activity icon"></i></div>
+						<h4><a href="" class="stretched-link">Fortschritte machen</a></h4>
+						<p>"Делать успехи". Закончим на позитивном.</p>
+					</div>
+				</div><!-- End Service Item -->
+
+			</div>
+
+		</div>
+
+	</section><!-- /Services Section -->
+	{% else %}
+	<div class="container section-title" data-aos="fade-up">
+		<h2>(?)</h2>
+		<p>Войдите, чтобы просмотреть раздел</p>
+	</div><!-- End Section Title -->
+	<div class="container">
+
+		<div class="row gy-4">
+
+			<div class="col-xl-3 col-md-6">
+				<!-- GitHub Login Button -->
+				<a href="{{ url_for('login', provider='github') }}"
+					class="btn btn-dark rounded-3 mb-3 mb-md-0 me-md-2">Войти
+					через GitHub</a>
+			</div><!-- End Service Item -->
+
+			<div class="col-xl-3 col-md-6">
+				<!-- Telegram login button -->
+				<script async src="https://telegram.org/js/telegram-widget.js?7"
+					data-telegram-login="auth_portfolio_bot" data-size="large" data-radius="10" data-lang="ru"
+					data-auth-url="https://portfolio-web-page-l4s8.onrender.com/telegram_auth">
+					</script>
+			</div><!-- End Service Item -->
+
+		</div>
+	</div>
+	<p></p>
+	</div>
+	{% endif %}
 
 </main>
 
@@ -364,26 +442,5 @@
 
 <!-- Main JS File -->
 <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
-{% else %}
-<div class="row mt-4">
-	<div class="col-12 text-center d-flex justify-content-center align-items-center">
-		<p>Войдите, чтобы просмотреть страницу</p>
-	</div>
-	<div class="row mt-4 justify-content-center">
-		<div class="col-12 col-md-auto d-flex flex-column flex-md-row justify-content-center align-items-center">
-			<!-- GitHub Login Button -->
-			<a href="{{ url_for('login', provider='github') }}" class="btn btn-dark rounded-3 mb-3 mb-md-0 me-md-2">Войти
-				через GitHub</a>
-	
-			<!-- Telegram login button -->
-			<script async src="https://telegram.org/js/telegram-widget.js?7" data-telegram-login="auth_portfolio_bot"
-				data-size="large" data-radius="10" data-lang="ru"
-				data-auth-url="https://portfolio-web-page-l4s8.onrender.com/telegram_auth">
-				</script>
-		</div>
-	</div>
-</div>
 
-</div>
-{% endif %}
 {% endblock %}
